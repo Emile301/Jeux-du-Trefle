@@ -1,195 +1,136 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <style>
-            @keyframes flipEnd {
-                from {transform: rotateX(270deg);}
-                to {transform: rotateX(360deg);}
-            }
-            @keyframes flipBegin {
-                from {transform: rotateX(0deg);}
-                to {transform: rotateX(90deg);}
-            }
+        <meta charset="utf-8">   
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="style.css">
+        <title>Jeu st patrick</title>
 
-            body {
-                font-family: Arial, Helvetica, sans-serif;
-                margin: 0;
-            }
-
-            #header {
-                display: flex;
-                width:100%;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                margin-bottom: 16px;
-            }
-
-            #header .title {
-                font-weight: bold;
-                font-size: 5rem;
-            }
-            #header .description {
-
-            }
-
-            #footer {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
-            #winning-cells-counter {
-                font-size: x-large;
-                font-weight: bold;
-            }
-            #winning-cells-counter::after {
-                content: " Cadeaux Restants";
-                font-weight: normal;
-            }
-
-            #content-wrapper {
-                display: grid;
-                margin: 16px auto;
-                height: 80vh;
-                width: 80vh;
-                grid-gap: 10px;
-            }
-
-            .cell {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                height: 100%;
-
-                background-color: rgba(130,200,130,0.7);
-                border-radius: 5px;
-                box-shadow: 0 0 10px 0 lightgray;
-
-                cursor:pointer;
-                overflow: hidden;
-
-                animation-fill-mode: forwards;
-                animation-duration: 1s, 1s;
-                animation-delay: 0s, 1s;
-                animation-timing-function: ease-in, ease-out;
-            }
-            .cell:hover {
-                background-color: rgba(130,200,130,0.9);
-
-            }
-            .cell.flipped {
-                animation-name: flipBegin, flipEnd;
-                cursor: default;
-                opacity: 0.8;
-            }
-
-            .cell::before {
-                content: attr(data-index);
-                font-weight: bold;
-                font-size: 32px;
-            }
-            .cell.won::before {
-                content: "⠀";
-                background-image: url('./won.png');
-                background-size: 100% 100%;
-                width: 85%;
-                height: 85%;
-                
-            }
-            .cell.won {
-
-            }
-            .cell.lost::before {
-                content: "⠀";
-                font-weight: bold;
-                font-size: 32px;
-            }
-            .cell.lost {
-
-            }
-            
-        </style>
     </head>
     <body>
-        <div id="header">
-            <span class="title">Jeu St Patrick</span>
-            <span class="description">Choisissez un numéro</span>
+        <div class="counter">
+            <button id="gen"onclick="random(this)">x</button>
+            <h1 id="cardsFound">☘︎: 0/25</h1>
         </div>
-        <div id="content-wrapper"></div>
-        <div id="footer"><span id="winning-cells-counter">Cadeaux Restants</span></div>
-        <script type="text/javascript">
-            const cellContainer = document.getElementById("content-wrapper");
-            const cellTemplate = document.getElementById("cell-template");
-            const cellsRemainingCounter = document.getElementById("winning-cells-counter");
-            const ncells = 100;
-            let winnableCells = 25;
+        <div class="center">
+            <br><br><br>
+            <button onclick="selectCard(this)">1</button>
+            <button onclick="selectCard(this)">2</button>
+            <button onclick="selectCard(this)">3</button>
+            <button onclick="selectCard(this)">4</button>
+            <button onclick="selectCard(this)">5</button>
+            <button onclick="selectCard(this)">6</button>
+            <button onclick="selectCard(this)">7</button>
+            <button onclick="selectCard(this)">8</button>
+            <button onclick="selectCard(this)">9</button>
+            <button onclick="selectCard(this)">10</button>
+            <br>
+            <button onclick="selectCard(this)">11</button>
+            <button onclick="selectCard(this)">12</button>
+            <button onclick="selectCard(this)">13</button>
+            <button onclick="selectCard(this)">14</button>
+            <button onclick="selectCard(this)">15</button>
+            <button onclick="selectCard(this)">16</button>
+            <button onclick="selectCard(this)">17</button>
+            <button onclick="selectCard(this)">18</button>
+            <button onclick="selectCard(this)">19</button>
+            <button onclick="selectCard(this)">20</button>
+            <br>
 
-            const cellSelectHandler = (mouseEvent) => {
-                const targetCell = mouseEvent.currentTarget;
-                flipCell(targetCell);
-            }
+            <button onclick="selectCard(this)">21</button>
+            <button onclick="selectCard(this)">22</button>
+            <button onclick="selectCard(this)">23</button>
+            <button onclick="selectCard(this)">24</button>
+            <button onclick="selectCard(this)">25</button>
+            <button onclick="selectCard(this)">26</button>
+            <button onclick="selectCard(this)">27</button>
+            <button onclick="selectCard(this)">28</button>
+            <button onclick="selectCard(this)">29</button>
+            <button onclick="selectCard(this)">30</button>
+            <br>
+            <button onclick="selectCard(this)">31</button>
+            <button onclick="selectCard(this)">32</button>
+            <button onclick="selectCard(this)">33</button>
+            <button onclick="selectCard(this)">34</button>
+            <button onclick="selectCard(this)">35</button>
+            <button onclick="selectCard(this)">36</button>
+            <button onclick="selectCard(this)">37</button>
+            <button onclick="selectCard(this)">38</button>
+            <button onclick="selectCard(this)">39</button>
+            <button onclick="selectCard(this)">40</button>
+            <br>
+            <button onclick="selectCard(this)">41</button>
+            <button onclick="selectCard(this)">42</button>
+            <button onclick="selectCard(this)">43</button>
+            <button onclick="selectCard(this)">44</button>
+            <button onclick="selectCard(this)">45</button>
+            <button onclick="selectCard(this)">46</button>
+            <button onclick="selectCard(this)">47</button>
+            <button onclick="selectCard(this)">48</button>
+            <button onclick="selectCard(this)">49</button>
+            <button onclick="selectCard(this)">50</button>
+            <br>
+            <button onclick="selectCard(this)">51</button>
+            <button onclick="selectCard(this)">52</button>
+            <button onclick="selectCard(this)">53</button>
+            <button onclick="selectCard(this)">54</button>
+            <button onclick="selectCard(this)">55</button>
+            <button onclick="selectCard(this)">56</button>
+            <button onclick="selectCard(this)">57</button>
+            <button onclick="selectCard(this)">58</button>
+            <button onclick="selectCard(this)">59</button>
+            <button onclick="selectCard(this)">60</button>
+            <br>
+            <button onclick="selectCard(this)">61</button>
+            <button onclick="selectCard(this)">62</button>
+            <button onclick="selectCard(this)">63</button>
+            <button onclick="selectCard(this)">64</button>
+            <button onclick="selectCard(this)">65</button>
+            <button onclick="selectCard(this)">66</button>
+            <button onclick="selectCard(this)">67</button>
+            <button onclick="selectCard(this)">68</button>
+            <button onclick="selectCard(this)">69</button>
+            <button onclick="selectCard(this)">70</button>
+            <br>
+            <button onclick="selectCard(this)">71</button>
+            <button onclick="selectCard(this)">72</button>
+            <button onclick="selectCard(this)">73</button>
+            <button onclick="selectCard(this)">74</button>
+            <button onclick="selectCard(this)">75</button>
+            <button onclick="selectCard(this)">76</button>
+            <button onclick="selectCard(this)">77</button>
+            <button onclick="selectCard(this)">78</button>
+            <button onclick="selectCard(this)">79</button>
+            <button onclick="selectCard(this)">80</button>
 
-            const cellFlipHandler = (animationEvent) => {
-                if (animationEvent.animationName !== "flipBegin") return;
-                const targetCell = animationEvent.target;
-                discoverCell(targetCell);
-            }
+            <br>
+            <button onclick="selectCard(this)">81</button>
+            <button onclick="selectCard(this)">82</button>
+            <button onclick="selectCard(this)">83</button>
+            <button onclick="selectCard(this)">84</button>
+            <button onclick="selectCard(this)">85</button>
+            <button onclick="selectCard(this)">86</button>
+            <button onclick="selectCard(this)">87</button>
+            <button onclick="selectCard(this)">88</button>
+            <button onclick="selectCard(this)">89</button>
+            <button onclick="selectCard(this)">90</button>
 
-            function discoverCell(cell) {
-                if (getCellResult())
-                    cell.classList.add("won");
-                else
-                    cell.classList.add("lost");
-            }
-
-            function flipCell(cell) {
-                cell.classList.add("flipped");
-                cell.addEventListener('animationend', cellFlipHandler);
-            }
-
-            function createSingleCell(container, index) {
-                let cell = document.createElement("div");
-                cell.className = "cell";
-                cell.setAttribute('data-index', index);
-                cell.addEventListener('click', cellSelectHandler, {once: true});
-                container.appendChild(cell);
-            }
-
-            function createCells(container, amount) {
-                const [rows, columns] = closestSquareFactors(amount);
-                container.style.gridTemplateRows = `repeat(${rows}, auto)`;
-                container.style.gridTemplateColumns = `repeat(${columns}, auto)`;
-                for (let i=0;i<amount;i++) {
-                    createSingleCell(container, i);   
-                } 
-            }
-
-            function closestSquareFactors(number) {
-                const SquaredNumber = Math.sqrt(number);
-                const factors = [...Array(number + 1).keys()].filter(i => number % i === 0);
-                const closestFactor = factors.reduce((prev, curr) => {
-                    return Math.abs(curr - SquaredNumber) < Math.abs(prev - SquaredNumber) ? curr : prev;
-                });
-
-                return [closestFactor, number / closestFactor];
-            }
+            <br>
+            <button onclick="selectCard(this)">91</button>
+            <button onclick="selectCard(this)">92</button>
+            <button onclick="selectCard(this)">93</button>
+            <button onclick="selectCard(this)">94</button>
+            <button onclick="selectCard(this)">95</button>
+            <button onclick="selectCard(this)">96</button>
+            <button onclick="selectCard(this)">97</button>
+            <button onclick="selectCard(this)">98</button>
+            <button onclick="selectCard(this)">99</button>
+            <button onclick="selectCard(this)">100</button>
 
 
-            let remainingCells = ncells;
-            cellsRemainingCounter.textContent = `${winnableCells}`
 
-            const getCellResult = () => {
-                const result = Math.random() * (remainingCells--) < winnableCells
-                if (result) winnableCells--;
-                cellsRemainingCounter.textContent = `${winnableCells}`
-                return result;
-            };
+        </div>
+        <script src="script.js"></script>
 
-            createCells(cellContainer, ncells);
-
-        </script>
     </body>
-</html>
-
-
+</html> 
